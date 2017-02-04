@@ -100,9 +100,7 @@ class WeatherStationController(object):
         return wd
         
     def close(self):
-        if self.session.is_open:
-            ser.close()
-
+        pass
 
 def launchFldigi():
     pass
@@ -122,7 +120,10 @@ def checkTeensyStatus():
 
 def getWeatherData():
     '''Get data from serial port, TBD'''
-    pass
+    wc = WeatherStationController('/dev/rttyS0')
+    wc.initialize()
+    data = wc.getWeatherData()
+    return data
 
 def encodeWeatherData():
     '''Encode the weather object into a text block that will be transmitted via fldigi'''
